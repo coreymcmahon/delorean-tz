@@ -1,4 +1,26 @@
+SOURCE = ./index.js
+TARGET = ./dist/delorean-tz.js
+TARGET_MIN = ./dist/delorean-tz.min.js
+BROWSERIFY = ./node_modules/.bin/browserify
+UGLIFY =  ./node_modules/.bin/uglifyjs
+NPM = npm
+
 test:
 	./node_modules/.bin/mocha --reporter spec
 
- .PHONY: test
+clean:
+	rm -rf ./dist
+
+build: clean $(TARGET) $(TARGET_MIN)
+
+$(TARGET): $(SOURCE) node_modules
+	mkdir dist
+	$(BROWSERIFY) -o $@ -- $<
+
+$(TARGET_MIN): $(TARGET)
+	$(UGLIFY) $< --compress --output $@
+
+node_modules:
+	$(NPM) install
+
+ .PHONY: test build clean
