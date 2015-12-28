@@ -1,3 +1,5 @@
+MODULE = deloreanTz
+EXPORT = $(MODULE)
 SOURCE = ./index.js
 TARGET = ./dist/delorean-tz.js
 TARGET_MIN = ./dist/delorean-tz.min.js
@@ -15,7 +17,7 @@ build: clean $(TARGET) $(TARGET_MIN)
 
 $(TARGET): $(SOURCE) node_modules
 	mkdir dist
-	$(BROWSERIFY) -o $@ -- $<
+	$(BROWSERIFY) -s $(EXPORT) -o $@ -- $<
 
 $(TARGET_MIN): $(TARGET)
 	$(UGLIFY) $< --compress --output $@
