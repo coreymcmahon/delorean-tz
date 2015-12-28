@@ -6,9 +6,13 @@ module.exports = {
   /**
    * Shifts a UTC value into the current user's timezone
    *
+   * @param {string} input The UTC string to convert
+   * @param {string} format The datetime format to return
+   *
    * @return {string} Adjusted timezone
    */
-  shift: function (input) {
+  shift: function (input, format) {
+    format = format ? format : 'YYYY-MM-DD HH:mm'
     var timezone = timezonedetect.determine()
     var utc = moment.tz(input, 'UTC')
     var clientTz = utc.clone().tz(timezone.name())
