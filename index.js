@@ -27,5 +27,16 @@ module.exports = {
   getTimezoneName: function () {
     var timezone = timezonedetect.determine()
     return timezone.name()
+  },
+
+  /**
+   * Returns the UTC offset of the user's current timezone
+   *
+   * @return {string} String representation of the current timezone offset (e.g: +1000)
+   */
+  getOffset: function () {
+    var clientTz = moment()
+    clientTz.tz(this.getTimezoneName())
+    return clientTz.format('ZZ')
   }
 }
