@@ -1,6 +1,6 @@
 {
   "name": "delorean-tz",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Library for adjusting UTC values into client's timezone",
   "main": "index.js",
   "scripts": {

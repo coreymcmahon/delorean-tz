@@ -16,7 +16,7 @@ module.exports = {
     var timezone = timezonedetect.determine()
     var utc = moment.tz(input, 'UTC')
     var clientTz = utc.clone().tz(timezone.name())
-    var datestring = clientTz.format('YYYY-MM-DD HH:mm')
+    var datestring = clientTz.format(format)
     return datestring
   },
 
